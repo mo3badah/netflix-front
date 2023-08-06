@@ -1002,3 +1002,16 @@ footer ul li{
     font-weight: 800;
 
 }
+#mainContainer .righticons a > div:not(.dropdown){
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#mainContainer .righticons a  > div:not( .dropdown) > div{
+    display: inline-block;
+    margin-left: 10px;
+
+}

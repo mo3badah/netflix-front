@@ -4,8 +4,7 @@ import Play from "./PlayerComponent";
 
 
 const video = (props) => {
-    const {video, index} = props;
-    
+    const {video, index, type} = props;
     const handleMouseEnter = (index) => {
         // videos[index].play();
     }
@@ -15,7 +14,7 @@ const video = (props) => {
 
     return (
         <div
-            key={index}
+            key={`div-video-${type}-${index}`}
             className="video video-item"
             onMouseEnter={() => handleMouseEnter(index)}
             onMouseLeave={() => handleMouseLeave(index)}
@@ -25,7 +24,6 @@ const video = (props) => {
                 width="100%"
                 height="100%"
                 loop
-                key={`video-${index}-one`}
                 // ref={(videoRef) => (videos[index] = videoRef)}
                 className="mylist-img p-r-10 p-t-10 "
                 poster={video.posterUrl}

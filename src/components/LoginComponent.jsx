@@ -7,6 +7,7 @@ const NetflixLogin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isEmailValid, setIsEmailValid] = useState(false);
+    const [isPasswordValid, setIspasswordValid] = useState(false);
     const navigate = useNavigate();
 
     // Function to handle form submission
@@ -16,11 +17,9 @@ const NetflixLogin = () => {
     });
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    // myHeaders.append("Cookie", "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YzIzZmFiZTI1NmJkNzU3ZGI2NmQ0MSIsImZpcnN0TmFtZSI6IkFtaXIiLCJsYXN0TmFtZSI6ImtoYW4iLCJyb2xlIjoidXNlciIsInByb2ZpbGVQaWN0dXJlIjoiaGVsbG8iLCJpYXQiOjE2OTA4MDQyNzEsImV4cCI6MTY5MDgwNTE3MX0.JfugBOR4Hb1nNxsAWDweqhdhoNPR5odWoQy9ylmW618");
     const setCookie = (name, value, days) => {
         const expirationDate = new Date();
         expirationDate.setDate(expirationDate.getDate() + days);
-
         const cookieValue = encodeURIComponent(name) + '=' + encodeURIComponent(value) + '; expires=' + expirationDate.toUTCString() + '; path=/';
         document.cookie = cookieValue;
     };
@@ -38,13 +37,11 @@ const NetflixLogin = () => {
 
         fetch('http://localhost:5000/api/auth/signin', requestOptions)
             .then((response) => {
-                console.log('Response Status:', response.status);
                 return response.text();
             })
             .then((result) => {
                 // Process the API response and check if it is successful
                 const responseObj = JSON.parse(result);
-                console.log(responseObj);
                 if (!responseObj.error) {
                     setCookie('token', responseObj.token, 1);
                     localStorage.setItem('token', responseObj.token);
@@ -72,6 +69,12 @@ const NetflixLogin = () => {
         const re = /\S+@\S+\.\S+/;
         const result = re.test(email);
         setIsEmailValid(result);
+    };
+    const validatePassword = () => {
+        // Password must have at least one uppercase letter, one lowercase letter, and be at least four characters long
+        const re = /^(?=.*[a-z])(?=.*[A-Z]).{4,}$/;
+        const result = re.test(password);
+        setIspasswordValid(result);
     };
 
     return (
@@ -118,11 +121,15 @@ const NetflixLogin = () => {
                             id="password"
                             placeholder="Password"
                             value={password}
-                            onChange={(e) => setPassword(e.target.value)}
+                            onChange={(e) => {
+                                setPassword(e.target.value);
+                                validatePassword();
+                            }}
                             required
                         />
-                        <p id="errorPassword">
-                            Your password must contain between 4 and 60 characters.
+                        <p id="errorPassword"
+                           style={{ display: isPasswordValid ? 'none' : 'block' }}>
+                            Your password must contain between 4 and 60 characters and should have at least one capital and one small char.
                         </p>
 
                         <button

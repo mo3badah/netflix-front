@@ -1,16 +1,28 @@
 import React from 'react';
 import '../css/NetflixLogin.css'; // Import the CSS file for styling
-import '../css/logout.css'; // Import the CSS file for styling
+import '../css/logout.css';
+import {Link} from "react-router-dom"; // Import the CSS file for styling
 
+const handleSignOut = () => {
+    // Remove cookies by setting the expiration date to the past
+    document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 
+    // Clear local storage
+    localStorage.clear();
+
+    // Redirect to the sign-in page or perform any other sign-out related tasks
+    // (e.g., updating the authentication state)
+};
 class LogoutPage extends React.Component {
+
+
     render() {
         return (
             <main id={"logout"} style={{ padding: '0px 10px' }}>
                 <header className="d-flex space-between middle-align">
                     <img src="./images/logo.PNG" height="50px" width="170px" alt="site logo main" />
                     <button className="button">
-                        <a href="/login">Sign In</a>
+                        <Link to="/">Sign In</Link>
                     </button>
                 </header>
                 <section id="logout-section" className="d-flex flex-center">
@@ -21,8 +33,8 @@ class LogoutPage extends React.Component {
                             link.
                         </p>
                         <p className="logoutMessage">This computer will be redirected to the Netflix home page in 30 seconds.</p>
-                        <button className="button logoutButton">
-                            <a href="/login">Continue</a>
+                        <button className="button logoutButton" onClick={handleSignOut}>
+                            <Link to="/">Continue</Link>
                         </button>
                     </div>
                 </section>

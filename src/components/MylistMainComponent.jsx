@@ -31,11 +31,11 @@ const VideoList = (props) => {
         return str.charAt(0).toUpperCase() + str.slice(1);
     }
      return (
-            <section id="mylist" className="container">
+            <section id="mylist" className="container" >
                 <h4 className="mylist-heading">{capitalizeString(props.genre)} List</h4>
                 <div className="mylist-container d-flex flex-start flex-middle flex-no-wrap owl-carousel">
                     {videos.map((video, index) => (
-                        <Movie video={video} index={index} />
+                            <Movie video={video} index={index} type={props.genre + "from-main"} />
                     ))}
                 </div>
             </section>
