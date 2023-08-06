@@ -1002,7 +1002,7 @@ footer ul li{
     font-weight: 800;
 
 }
-#mainContainer .righticons a > div:not(.dropdown){
+#mainContainer .righticons a > div{
     display: flex;
     margin-left: 10px;
     margin-right: 10px;
@@ -1010,8 +1010,11 @@ footer ul li{
     justify-content: center;
     align-items: center;
 }
-#mainContainer .righticons a  > div:not( .dropdown) > div{
+#mainContainer .righticons a  > div > div{
     display: inline-block;
     margin-left: 10px;
-
+}
+#mainContainer .righticons .dropdown{
+    margin-left: 20px;
+    margin-right: 20px;
 }

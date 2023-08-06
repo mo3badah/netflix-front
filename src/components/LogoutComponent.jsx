@@ -22,7 +22,7 @@ class LogoutPage extends React.Component {
                 <header className="d-flex space-between middle-align">
                     <img src="./images/logo.PNG" height="50px" width="170px" alt="site logo main" />
                     <button className="button">
-                        <Link to="/">Sign In</Link>
+                        <Link to="/login">Sign In</Link>
                     </button>
                 </header>
                 <section id="logout-section" className="d-flex flex-center">
@@ -34,7 +34,7 @@ class LogoutPage extends React.Component {
                         </p>
                         <p className="logoutMessage">This computer will be redirected to the Netflix home page in 30 seconds.</p>
                         <button className="button logoutButton" onClick={handleSignOut}>
-                            <Link to="/">Continue</Link>
+                            <Link to="/login">Continue</Link>
                         </button>
                     </div>
                 </section>

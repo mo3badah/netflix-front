@@ -1,5 +1,8 @@
 import React, {useEffect, useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
+import SearchIcon from '@mui/icons-material/Search';
+import NotificationsIcon from '@mui/icons-material/Notifications';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import IsAdmin from "./isAdmin";
 
 const Header = () => {
@@ -24,7 +27,7 @@ const Header = () => {
             const data = await response.json();
             if (response.status === 403){setIsAdmin(false)}
             else if (response.status === 401) {
-                navigate('/');
+                navigate('/login');
             }
             else {
                 setIsAdmin(data.admin);
@@ -40,7 +43,7 @@ const Header = () => {
 
     const handleSignOut = () => {
         // Remove cookies by setting the expiration date to the past
-        document.cookie = 'your_cookie_name=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
 
         // Clear local storage
         localStorage.clear();
@@ -54,50 +57,44 @@ const Header = () => {
       <div>
         <header className="d-flex space-between flex-center flex-middle">
           <div className="nav-links d-flex flex-center flex-middle">
-            <Link to="/main">
+            <Link to="/">
               <h2 className="logo logo-text red-color f-s-28 m-r-25">
                 NETFLIX
               </h2>
               <h2 className="second-logo-text red-color f-s-28">N</h2>
             </Link>
-            <Link to="/main" className="nav-item home">
+            <Link to="/" className="nav-item home">
               Home
             </Link>
-            <Link to="/main" className="nav-item">
+            <Link to="/" className="nav-item">
               TV Show
             </Link>
-            <Link to="/main" className="nav-item">
+            <Link to="/" className="nav-item">
               Movies
             </Link>
-            <Link to="/main" className="nav-item latest">
+            <Link to="/" className="nav-item latest">
               Latest
             </Link>
-            <Link to="/main" className="nav-item">
+            <Link to="/" className="nav-item">
               My List
             </Link>
           </div>
           <div className="righticons d-flex flex-end flex-middle">
               <IsAdmin isAdmin={isAdmin} />
-            <div>
               <Link to="/search">
-                <img src="images/icons/search.svg" alt="search icon" />
-              </Link>
+            <div>
+                <SearchIcon />
+
             </div>
+              </Link>
             <div className="dropdown notification">
-              <img
-                src="images/icons/notification.svg"
-                alt="notification icon"
-              />
+              <NotificationsIcon />
               <div className="dropdown-content">
                 {/* Notification items go here */}
               </div>
             </div>
             <div className="dropdown">
-              <img
-                src="images/icons/user-image-green.png"
-                alt="user profile icon"
-                className="user-icon"
-              />{" "}
+              <AccountCircleIcon />
               <span className="profile-arrow"></span>
               <div className="dropdown-content">
                 <div className="profile-links">

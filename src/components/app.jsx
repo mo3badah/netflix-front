@@ -26,7 +26,7 @@ class App extends Component {
         {/*<main className="container">*/}
           <Routes>
             <Route
-                path="/"
+                path="/login"
                 element={
                   <React.Fragment>
                     <NetflixLogin />
@@ -53,7 +53,7 @@ class App extends Component {
                 }
             />
             <Route
-                path="/main"
+                path="/"
                 element={
                   <React.Fragment>
                     <Navbar />
@@ -145,7 +145,7 @@ class App extends Component {
                 element={
                   <React.Fragment>
                     <Navbar />
-                    <UserComponent user={this.state.user} />
+                    <UserComponent />
                     <FooterComponent />
                     </React.Fragment>
                 }

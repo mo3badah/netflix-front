@@ -21,17 +21,11 @@ const NetflixRegister = () => {
         const result = re.test(email);
         setIsEmailValid(result);
     };
-    const validatePassword = (password) => {
-        const minLength = 4;
-        const maxLength = 60;
-
-        if (password.length >= minLength && password.length <= maxLength) {
-            // Password is valid
-            setIsPasswordValid(true);
-        } else {
-            // Password is invalid
-            setIsPasswordValid(false);
-        }
+    const validatePassword = () => {
+        // Password must have at least one uppercase letter, one lowercase letter, and be at least four characters long
+        const re = /^(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+        const result = re.test(password);
+        setIsPasswordValid(result);
     };
 
 
@@ -65,7 +59,7 @@ const NetflixRegister = () => {
                     toast.success('Register successful', {
                         onClose: () => {
                             // Navigate to another component (e.g., MainComponent) using navigate function
-                            navigate('/main');
+                            navigate('/');
                         },
                     });
                 }else {
@@ -148,16 +142,14 @@ const NetflixRegister = () => {
                             value={password}
                             onChange={
                                 (e) => {
-                                    setPassword(e.target.value)
-                                    validatePassword(e.target.value)
+                                    setPassword(e.target.value);
+                                    validatePassword();
                                 }}
                             required
                         />
-                        <p
-                            id="errorPassword"
-                            style={{ display: isPasswordValid ? 'none' : 'block' }}
-                        >
-                            Your password must contain between 4 and 60 characters.
+                        <p id="errorPassword"
+                           style={{ display: isPasswordValid ? 'none' : 'block' }}>
+                            Your password must contain between 8 and 60 characters and should have at least one capital and one small char.
                         </p>
 
 
