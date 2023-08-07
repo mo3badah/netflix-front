@@ -1,6 +1,5 @@
 import { useSearchParams } from "react-router-dom";
-import React, { useState, useEffect, useRef } from "react";
-import Movie from "./movie";
+import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { blue, red } from "@mui/material/colors";

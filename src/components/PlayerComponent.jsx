@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { useParams } from 'react-router-dom';
 import 'vidstack/styles/defaults.css';
-import '../css/play.css';
 import 'vidstack/styles/community-skin/video.css';
 import YouTubePlayer from './youtube';
 import { MediaCommunitySkin, MediaOutlet, MediaPlayer, MediaPoster } from '@vidstack/react';

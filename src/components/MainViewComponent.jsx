@@ -1,5 +1,4 @@
 import { InfoOutlined, PlayArrow } from "@mui/icons-material";
-import "../css/mainview.css";
 
 export default function Featured({ type }) {
     return (

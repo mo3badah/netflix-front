@@ -1,6 +1,4 @@
 import React from 'react';
-import '../css/NetflixLogin.css'; // Import the CSS file for styling
-import '../css/logout.css';
 import {Link} from "react-router-dom"; // Import the CSS file for styling
 
 const handleSignOut = () => {

@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useNavigate, NavLink } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import '../css/register.css'; // Import the CSS file for styling
 
 
 const NetflixRegister = () => {

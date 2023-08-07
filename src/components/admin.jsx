@@ -1,13 +1,11 @@
 import { useSearchParams, Link } from "react-router-dom";
-import React, { useState, useEffect, useRef } from "react";
-import Movie from "./movie";
+import React, { useState, useEffect } from "react";
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { blue, red } from "@mui/material/colors";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
-import "../css/addnew.css";
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 const theme = createTheme({

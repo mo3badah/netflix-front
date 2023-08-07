@@ -1,5 +1,4 @@
 import { ArrowBackOutlined } from "@mui/icons-material";
-import "../css/viewtrailer.css";
 
 export default function Watch() {
     return (

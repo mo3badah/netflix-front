@@ -14,7 +14,6 @@ import MainComponent from "./MainComponent";
 import MylistMainComponent from "./MylistMainComponent";
 import FooterComponent from "./FooterComponent";
 import PlayerComponent from "./PlayerComponent";
-import UserComponent from "./UserComponent";
 import EditMovie from "./editMovie";
 
 class App extends Component {
