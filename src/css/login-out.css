@@ -117,24 +117,22 @@ button:focus {
 /*}*/
 
 
-/*body,html{*/
-/*    font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;*/
-/*    font-size: 16px;*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*    width: 100%;*/
-/*    position: relative;*/
-/*    background-color: black;*/
-/*    z-index: -1;*/
-/*}*/
-/*!* main styling start *!*/
-/*header, .container, .mylist, .continue-watching{*/
-/*    z-index: 10;*/
-/*}*/
-/*.image-size{*/
-/*    max-width: 94%;*/
-/*}*/
-/* header styling */
-
+body,html{
+    font-family: 'Netflix Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: relative;
+    background-color: black;
+    z-index: -1;
+}
+/* main styling start */
+header, .container, .mylist, .continue-watching{
+    z-index: 10;
+}
+.image-size{
+    max-width: 94%;
+}
 
 

@@ -7,6 +7,7 @@ import IsAdmin from "./isAdmin";
 
 const Header = () => {
     const [isAdmin, setIsAdmin] = useState('false');
+    const [user, setUser] = useState([]);
     const navigate = useNavigate();
 
 
@@ -25,12 +26,16 @@ const Header = () => {
         try {
             const response = await fetch(`http://localhost:5000/api/auth/isAdmin`, requestOptions);
             const data = await response.json();
-            if (response.status === 403){setIsAdmin(false)}
-            else if (response.status === 401) {
+            if (response.status === 401) {
                 navigate('/login');
             }
             else {
-                setIsAdmin(data.admin);
+                if (data.user.role === 'user'){
+                    setIsAdmin("false");
+                }else {
+                    setIsAdmin("true");
+                }
+                setUser(data.user)
             }
         } catch (error) {
             // console.error('Error fetching data:', error);
@@ -97,12 +102,14 @@ const Header = () => {
               <span className="profile-arrow"></span>
               <div className="dropdown-content">
                 <div className="profile-links">
-                  {/* Profile links go here */}
+                  <div>
+                      {user.firstName + " " + user.lastName}
+                  </div>
                 </div>
                 <div className="line"></div>
                 <div className="links d-flex direction-column">
-                  <Link to="/user">Account</Link>
-                  <Link to="#">Help Center</Link>
+                    <Link to={`/user/${user.id}`}>Account</Link>
+                    <Link to="#">Help Center</Link>
                   <Link onClick={handleSignOut} to="/logout">Sign Out of Netflix</Link>
                 </div>
               </div>

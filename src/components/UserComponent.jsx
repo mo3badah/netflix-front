@@ -1,6 +1,32 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
+import {useParams} from "react-router-dom";
 
-const UserProfile = ({ user }) => {
+const UserProfile = () => {
+    const [user, setUser] = useState({});
+    const { userId } = useParams();
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const myHeaders = new Headers();
+                myHeaders.append("Content-Type", "application/json");
+                const requestOptions = {
+                    method: 'GET',
+                    headers: myHeaders,
+                    credentials: 'include',
+                    redirect: 'follow',
+                };
+                const response = await fetch(`http://localhost:5000/api/users/own/${userId}`, requestOptions);
+                const data = await response.json();
+                if (!response.ok) throw new Error(`${data.message} (${response.status})`);
+                setUser({...data.data});
+                console.log(data.data)
+            } catch (error) {
+                console.error('Error fetching user:', error);
+            }
+        };
+        fetchData();
+    }, []);
+
     return (
         <section className="userprofile" id="userprofilecontainer">
             <div>
@@ -8,12 +34,16 @@ const UserProfile = ({ user }) => {
             </div>
             <div className="line"></div>
             <div className="membership d-flex flex-no-wrap space-between">
-                {/* Membership & Billing */}
                 <div className="left">
                     <h4 className="headline">MEMBERSHIP & BILLING</h4>
                     <button className="button">Cancel Membership</button>
                 </div>
                 <div className="right">
+                    <div className="d-flex space-between">
+                        <div className="heading f-s-40">
+                            <strong>{user.firstName + " " + user.lastName}</strong>
+                        </div>
+                    </div>
                     <div className="d-flex space-between">
                         <div className="email">
                             <strong>{user.email}</strong>
@@ -38,7 +68,7 @@ const UserProfile = ({ user }) => {
 
                     <div className="d-flex space-between">
                         <div className="email">
-                            Phone: {user.phoneNumber}
+                            Phone: {user.phone}
                         </div>
                         <div className="link">
                             <a href="#" className="link-item">
@@ -50,7 +80,7 @@ const UserProfile = ({ user }) => {
 
                     <div className="carddetail d-flex space-between flex-middle">
                         <div className="card">
-                            <h4><span className="icon-visa">VISA</span> •••• •••• •••• 5350</h4>
+                            <h4><span className="icon-visa">VISA</span> •••• •••• •••• {user.visa.slice(-4)}</h4>
                         </div>
                         <div className="link">
                             <a href="#" className="link-item">
@@ -81,7 +111,7 @@ const UserProfile = ({ user }) => {
                     <h4 className="headline">PLAN DETAILS</h4>
                 </div>
                 <div className="right d-flex space-between">
-                    <p>{user.plan}</p>
+                    <p>{user.role}</p>
                     <a href="#" className="link-item">Change plan</a>
                 </div>
             </div>

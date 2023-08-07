@@ -8,13 +8,13 @@ import NotFound from "./notFound";
 import Search from "./search";
 import Admin from "./admin";
 import AddNew from "./addNew";
-import AddNewUser from "./addUser"
 import EditUsers from "./editUsers"
 import MainComponent from "./MainComponent";
 import MylistMainComponent from "./MylistMainComponent";
 import FooterComponent from "./FooterComponent";
 import PlayerComponent from "./PlayerComponent";
 import EditMovie from "./editMovie";
+import UserComponent from "./UserComponent";
 
 class App extends Component {
 
@@ -22,7 +22,6 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
-        {/*<main className="container">*/}
           <Routes>
             <Route
                 path="/login"
@@ -105,36 +104,22 @@ class App extends Component {
                 </React.Fragment>
                 }
               />
-              <Route
-                  path="/adduser"
-                  element={
-                <React.Fragment>
-                    <Navbar />
-                    <AddNewUser
-                        videos={this.state.videos}
-                    />
-                    <FooterComponent />
-                </React.Fragment>
-                }
-              />
-              <Route
-                  path="/editusers"
-                  element={
-                <React.Fragment>
-                    <Navbar />
-                    <EditUsers
-                        videos={this.state.videos}
-                    />
-                  <FooterComponent />
-                </React.Fragment>
-                }
-              />
             <Route
                 path="/play/:videoId"
                 element={
                   <React.Fragment>
                     <Navbar />
                     <PlayerComponent/>
+                    <FooterComponent />
+                  </React.Fragment>
+                }
+            />
+              <Route
+                path="/user/:userId"
+                element={
+                  <React.Fragment>
+                    <Navbar />
+                    <UserComponent />
                     <FooterComponent />
                   </React.Fragment>
                 }
