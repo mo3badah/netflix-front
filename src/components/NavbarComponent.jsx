@@ -84,7 +84,6 @@ const Header = () => {
               <Link to="/search">
             <div>
                 <SearchIcon />
-
             </div>
               </Link>
             <div className="dropdown notification">

@@ -141,11 +141,11 @@ class App extends Component {
                 }
             />
             <Route
-                path="/user"
+                path="/users"
                 element={
                   <React.Fragment>
                     <Navbar />
-                    <UserComponent />
+                    <EditUsers />
                     <FooterComponent />
                     </React.Fragment>
                 }

@@ -16,7 +16,7 @@ const YourComponent = ({ isAdmin }) => {
               <div>Admin Panel</div>
             </div>
           </Link>
-          <Link to="/user">
+          <Link to="/users">
             <div>
               <div>
                 <SupervisorAccountIcon />
