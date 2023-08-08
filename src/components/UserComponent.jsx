@@ -19,7 +19,6 @@ const UserProfile = () => {
                 const data = await response.json();
                 if (!response.ok) throw new Error(`${data.message} (${response.status})`);
                 setUser({...data.data});
-                console.log(data.data)
             } catch (error) {
                 console.error('Error fetching user:', error);
             }
@@ -80,7 +79,7 @@ const UserProfile = () => {
 
                     <div className="carddetail d-flex space-between flex-middle">
                         <div className="card">
-                            <h4><span className="icon-visa">VISA</span> •••• •••• •••• {user.visa.slice(-4)}</h4>
+                            <h4><span className="icon-visa">VISA</span> •••• •••• •••• {user.visa ? user.visa.slice(-4) : <>••••</> }</h4>
                         </div>
                         <div className="link">
                             <a href="#" className="link-item">

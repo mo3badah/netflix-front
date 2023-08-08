@@ -1,13 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
+import { Link } from "react-router-dom";
 import AdminPanelSettingsIcon from "@mui/icons-material/AdminPanelSettings";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
 
-const YourComponent = ({ isAdmin }) => {
+const YourComponent = () => {
   return (
-      <>
-      {isAdmin ? (
-        <>
+    <>
           <Link to="/admin">
             <div>
               <div>
@@ -25,12 +23,6 @@ const YourComponent = ({ isAdmin }) => {
             </div>
           </Link>
         </>
-      ) : (
-        <div>
-          {/* Some other content if isAdmin is false */}
-        </div>
-      )}
-      </>
   );
 };
 

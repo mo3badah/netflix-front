@@ -1,61 +1,59 @@
-import React, {useEffect, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import SearchIcon from '@mui/icons-material/Search';
-import NotificationsIcon from '@mui/icons-material/Notifications';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import SearchIcon from "@mui/icons-material/Search";
+import NotificationsIcon from "@mui/icons-material/Notifications";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import IsAdmin from "./isAdmin";
 
 const Header = () => {
-    const [isAdmin, setIsAdmin] = useState('false');
-    const [user, setUser] = useState([]);
-    const navigate = useNavigate();
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [user, setUser] = useState([]);
+  const navigate = useNavigate();
 
-
-    useEffect(() => {
+  useEffect(() => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const requestOptions = {
-        method: 'GET',
-        headers: myHeaders,
-        credentials: 'include',
-        redirect: 'follow',
+      method: "GET",
+      headers: myHeaders,
+      credentials: "include",
+      redirect: "follow",
     };
 
     // Fetch the API data here and update the state
     const fetchData = async () => {
-        try {
-            const response = await fetch(`http://localhost:5000/api/auth/isAdmin`, requestOptions);
-            const data = await response.json();
-            if (response.status === 401) {
-                navigate('/login');
-            }
-            else {
-                if (data.user.role === 'user'){
-                    setIsAdmin("false");
-                }else {
-                    setIsAdmin("true");
-                }
-                setUser(data.user)
-            }
-        } catch (error) {
-            // console.error('Error fetching data:', error);
+      try {
+        const response = await fetch(
+          `http://localhost:5000/api/auth/isAdmin`,
+          requestOptions
+        );
+        const data = await response.json();
+        if (response.status === 401) {
+          navigate("/login");
+        } else {
+          if (data.user.role === "user") {
+            setIsAdmin(false);
+          } else {
+            setIsAdmin(true);
+          }
+          setUser(data.user);
         }
+      } catch (error) {
+      }
     };
-
     fetchData();
-}, []);
+  }, []);
 
+  const handleSignOut = () => {
+    // Remove cookies by setting the expiration date to the past
+    document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
-    const handleSignOut = () => {
-        // Remove cookies by setting the expiration date to the past
-        document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    // Clear local storage
+    localStorage.clear();
 
-        // Clear local storage
-        localStorage.clear();
-
-        // Redirect to the sign-in page or perform any other sign-out related tasks
-        // (e.g., updating the authentication state)
-    };
+    // Redirect to the sign-in page or perform any other sign-out related tasks
+    // (e.g., updating the authentication state)
+  };
 
   return (
     <main id="mainContainer" className="p-b-40">
@@ -85,12 +83,16 @@ const Header = () => {
             </Link>
           </div>
           <div className="righticons d-flex flex-end flex-middle">
-              <IsAdmin isAdmin={isAdmin} />
-              <Link to="/search">
-            <div>
+            {isAdmin ?
+                <IsAdmin />
+                :
+                <></>
+            }
+            <Link to="/search">
+              <div>
                 <SearchIcon />
-            </div>
-              </Link>
+              </div>
+            </Link>
             <div className="dropdown notification">
               <NotificationsIcon />
               <div className="dropdown-content">
@@ -102,15 +104,15 @@ const Header = () => {
               <span className="profile-arrow"></span>
               <div className="dropdown-content">
                 <div className="profile-links">
-                  <div>
-                      {user.firstName + " " + user.lastName}
-                  </div>
+                  <div>{user.firstName + " " + user.lastName}</div>
                 </div>
                 <div className="line"></div>
                 <div className="links d-flex direction-column">
-                    <Link to={`/user/${user.id}`}>Account</Link>
-                    <Link to="#">Help Center</Link>
-                  <Link onClick={handleSignOut} to="/logout">Sign Out of Netflix</Link>
+                  <Link to={`/user/${user.id}`}>Account</Link>
+                  <Link to="#">Help Center</Link>
+                  <Link onClick={handleSignOut} to="/logout">
+                    Sign Out of Netflix
+                  </Link>
                 </div>
               </div>
             </div>

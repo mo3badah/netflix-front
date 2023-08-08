@@ -48,7 +48,6 @@ const NetflixLogin = () => {
                     // Login successful, show success message
                     toast.success('Login successful', {
                         onClose: () => {
-                            // Navigate to another component (e.g., MainComponent) using navigate function
                             navigate('/');
                         },
                     });

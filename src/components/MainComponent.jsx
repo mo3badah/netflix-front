@@ -37,16 +37,14 @@ const MovieInformation = () => {
         className="d-flex direction-column flex-start middle-align"
       >
         <div>
-          {/* trailer video */}
           <video
             className="hero-background-image"
-            // ref={videoRef}
             muted
             id="hero-video"
             poster={videoData.posterUrl}
           >
-            <source src={videoData.trailer} type="video/mp4" />
-            Your browser does not support the video tag.
+            {videoData.trailer? ( <> <source src={videoData.trailer} type="video/mp4" />
+                Your browser does not support the video tag.</> ) : ( <></> )}
           </video>
 
           {/* left shadow */}

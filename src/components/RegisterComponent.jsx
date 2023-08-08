@@ -37,33 +37,39 @@ const NetflixRegister = () => {
     });
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    // myHeaders.append("Cookie", "token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0YzIzZmFiZTI1NmJkNzU3ZGI2NmQ0MSIsImZpcnN0TmFtZSI6IkFtaXIiLCJsYXN0TmFtZSI6ImtoYW4iLCJyb2xlIjoidXNlciIsInByb2ZpbGVQaWN0dXJlIjoiaGVsbG8iLCJpYXQiOjE2OTA4MDQyNzEsImV4cCI6MTY5MDgwNTE3MX0.JfugBOR4Hb1nNxsAWDweqhdhoNPR5odWoQy9ylmW618");
 
 
     const requestOptions = {
         method: 'POST',
         headers: myHeaders,
         body: raw,
-        // redirect: 'follow',
+    };
+    const setCookie = (name, value, days) => {
+        const expirationDate = new Date();
+        expirationDate.setDate(expirationDate.getDate() + days);
+        const cookieValue = encodeURIComponent(name) + '=' + encodeURIComponent(value) + '; expires=' + expirationDate.toUTCString() + '; path=/';
+        document.cookie = cookieValue;
     };
 
     const handleSignUp = () => {
         fetch('http://localhost:5000/api/auth/signup', requestOptions)
             .then((response) => {
-                console.log(response.status === 200);
-                if (response.status === 200){
-                    let responseObj = response.json();
+                return response.text();
+            })
+            .then((result) => {
+                // Process the API response and check if it is successful
+                const responseObj = JSON.parse(result);
+                if (!responseObj.error) {
+                    setCookie('token', responseObj.token, 1);
                     localStorage.setItem('token', responseObj.token);
-                    // Login successful, show success message
                     toast.success('Register successful', {
                         onClose: () => {
-                            // Navigate to another component (e.g., MainComponent) using navigate function
                             navigate('/');
                         },
                     });
-                }else {
-  
-                    toast.error('Error occurred during Register');
+                } else {
+                    // Login failed, show error message
+                    toast.error('Retry Registration process');
                 }
             })
             .catch((error) => {
