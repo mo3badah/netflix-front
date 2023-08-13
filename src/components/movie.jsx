@@ -1,35 +1,59 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import YouTubePlayer from './youtube';
 
-
-const video = (props) => {
+const VideoComponent = (props) => {
     const {video, index, type} = props;
-    const handleMouseEnter = (index) => {
-        // videos[index].play();
-    }
-    const handleMouseLeave = (index) => {
-        // videos[index].pause();
-    }
+    const [isHovered, setIsHovered] = useState(false);
 
+    const handleMouseEnter = () => {
+        setIsHovered(true);
+    };
+
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+    };
+
+    let trailerSrc = "";
+    if (video.videos) {
+        if (video.videos.length > 1){
+           const trailer = video.videos.filter((video)=> video.type === "Trailer");
+           if (!trailer){
+                trailerSrc = video.videos[0].key;
+           }else {
+               trailerSrc = trailer[0].key;
+           }
+        }
+    }
     return (
         <div
             key={`div-video-${type}-${index}`}
             className="video video-item"
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={() => handleMouseLeave(index)}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
             style={{ position: 'relative', width: '400px', height: '300px' }}
         >
-            <video
-                width="100%"
-                height="100%"
-                loop
-                // ref={(videoRef) => (videos[index] = videoRef)}
-                className="mylist-img p-r-10 p-t-10 "
-                poster={video.posterUrl}
-            >
-                <source src={video.videoSrc} type="video/mp4" />
-                Your browser does not support the video tag.
-            </video>
+            {video.videos && video.videos.length > 0 && isHovered && video.videos[0].key ? (
+                    <div width="100%"
+                         height="100%"
+                         className="mylist-img p-r-10 p-t-10 ">
+                        <YouTubePlayer videoId={video.videos[0].key} full={false} />
+                    </div>
+
+            ) : (
+                <video
+                    width="100%"
+                    height="100%"
+                    loop
+                    className="mylist-img p-r-10 p-t-10 "
+                    poster={video.posterUrl}
+                >
+                    {/*{trailerSrc !== "" ?  (<source src={"https://www.youtube.com/watch?v="+trailerSrc} type="video/mp4" />) : (<></>)}*/}
+                    {/*Your browser does not support the video tag.*/}
+                </video>
+
+            )}
+
             <Link to={`/play/${video._id}`} className="video-link">
             <div className="video-description d-flex flex-end direction-column">
                 <div className="play-button">
@@ -57,4 +81,4 @@ const video = (props) => {
     )
 }
 
-export default video;
+export default VideoComponent;

@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ViewHeadlineIcon from '@mui/icons-material/ViewHeadline';
 import IsAdmin from "./isAdmin";
 
 const Header = () => {
@@ -81,6 +82,9 @@ const Header = () => {
             <Link to="/" className="nav-item">
               My List
             </Link>
+          </div>
+          <div className="righticons-label d-flex flex-center flex-middle">
+            <ViewHeadlineIcon />
           </div>
           <div className="righticons d-flex flex-end flex-middle">
             {isAdmin ?

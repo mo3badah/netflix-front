@@ -33,12 +33,12 @@ const MovieInformation = () => {
     return (
         <>
             <div className="videocontainer">
-                {!videoData.trailer ? (
+                {!videoData.videos ? (
                     <div className="movielogo">
                         <img src={videoData.posterUrl} alt={videoData.seriesTitle} />
                     </div>
-                ) : videoData.videoPlatform === 'youtube' ? (
-                    <YouTubePlayer videoId={videoData.videoSource} />
+                ) : videoData.videos[0]["site"] === "YouTube"? (
+                    <YouTubePlayer videoId={videoData.videos[0].key} full={true} />
                 ) : (
                     <MediaPlayer
                         src={videoData.videoSource}

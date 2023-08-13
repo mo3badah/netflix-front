@@ -5,6 +5,11 @@
     margin-right: 4px;
     cursor: pointer;
 }
+.righticons img{
+    width: 22px;
+    margin-right: 25px;
+    color: white;
+}
 .righticons .profile-arrow{
     cursor: pointer;
     width: 0;
@@ -24,7 +29,6 @@
 .dropdown{
     cursor: pointer;
 }
-
 .dropdown-content {
     display: none;
     flex-direction: column;
@@ -90,9 +94,20 @@
 .profile-links .last{
     margin-top: 10px;
 }
+.righticons-label{
+    display: none;
+}
 
 @media (max-width: 760px){
     .righticons{
         display: none;
     }
+    .righticons-label{
+        display: inline-block;
+        cursor: pointer;
+        position: relative;
+        font-size: 40px;
+        padding-left: 20px;
+    }
+
 }
