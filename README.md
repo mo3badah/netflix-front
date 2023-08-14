@@ -45,27 +45,27 @@ This is a Netflix-like application built with React. It allows users to browse a
 - API: API for fetching movie data and users data of our backend project.
 
 ## Folder Structure
-├── src
-│   ├── components
-│   │   ├── NavbarComponent.js
-│   │   ├── LoginComponent.js
-│   │   ├── LogoutComponent.js
-│   │   ├── RegisterComponent.js
-│   │   ├── NotFound.js
-│   │   ├── Search.js
-│   │   ├── Admin.js
-│   │   ├── AddNew.js
-│   │   ├── EditUsers.js
-│   │   ├── MainComponent.js
-│   │   ├── MylistMainComponent.js
-│   │   ├── FooterComponent.js
-│   │   ├── PlayerComponent.js
-│   │   ├── EditMovie.js
-│   │   └── UserComponent.js
-│   ├── App.js
-│   └── index.js
+├── src \
+│   ├── components \
+│   │   ├── NavbarComponent.js \
+│   │   ├── LoginComponent.js \
+│   │   ├── LogoutComponent.js\
+│   │   ├── RegisterComponent.js\
+│   │   ├── NotFound.js\
+│   │   ├── Search.js\
+│   │   ├── Admin.js\
+│   │   ├── AddNew.js\
+│   │   ├── EditUsers.js\
+│   │   ├── MainComponent.js\
+│   │   ├── MylistMainComponent.js\
+│   │   ├── FooterComponent.js\
+│   │   ├── PlayerComponent.js\
+│   │   ├── EditMovie.js\
+│   │   └── UserComponent.js\
+│   ├── App.js\
+│   └── index.js\
 ├── public
-│   ├── index.html
-│   └── logo.png
-├── package.json
-└── README.md
+│   ├── index.html\
+│   └── logo.png\
+├── package.json\
+└── README.md\
